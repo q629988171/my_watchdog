@@ -13,6 +13,15 @@ OpenWRT路由器中监控网络服务并重启的脚本
 注意: 首次运行需要初始化(删除 my_watchdog.txt)
 
 参考:
-https://blog.csdn.net/qq_38250124/article/details/90137120https://www.tutorialspoint.com/unix/if-elif-statement.htmhttp://www.kaiyuanba.cn/html/1/131/137/4106.htmhttps://unix.stackexchange.com/questions/47584/in-a-bash-script-using-the-conditional-or-in-an-if-statement
+
+https://blog.csdn.net/qq_38250124/article/details/90137120
+
+https://www.tutorialspoint.com/unix/if-elif-statement.htm
+
+http://www.kaiyuanba.cn/html/1/131/137/4106.htm
+
+https://unix.stackexchange.com/questions/47584/in-a-bash-script-using-the-conditional-or-in-an-if-statement
+
 http://sc.ftqq.com/?c=code
+
 https://www.cnblogs.com/lsdb/p/10148177.html
