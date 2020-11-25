@@ -7,19 +7,32 @@ tries=0
 echo --- my_watchdog start ---
 while [[ $tries -lt 5 ]]
 do
-	if /bin/ping -c 1 8.8.8.8 >/dev/null
-	then
-		echo --- exit ---
-		# echo $DATE OK >>my_watchdog.log
-		exit 0
-	fi
-	tries=$((tries+1))
-	sleep 10
-	# echo $DATE tries: $tries >>my_watchdog.log
+    if /bin/ping -c 1 8.8.8.8 >/dev/null
+    then
+        echo $DATE Ping was successful.
+        state=$(cat my_watchdog.txt)
+        if [ ! $state ]
+        then
+            echo $DATE Ping was successful. >>my_watchdog.log
+        elif [ $state == 0 ]
+        then
+            echo $DATE Ping was successful. >>my_watchdog.log
+        fi
+        echo --- exit ---
+        echo 1 >my_watchdog.txt
+        exit 0
+    fi
+    tries=$((tries+1))
+    sleep 10
 done
 
-echo $DATE network restart >>my_watchdog.log
-/etc/init.d/network restart
-
-#echo $DATE reboot >>my_watchdog.log
-#reboot
+echo $DATE Ping had five tries and failed each time.
+state=$(cat my_watchdog.txt)
+if [ ! $state ]
+then
+    echo $DATE Ping had five tries and failed each time. >>my_watchdog.log
+elif [ $state == 1 ]
+then
+    echo $DATE Ping had five tries and failed each time. >>my_watchdog.log
+fi
+echo 0 >my_watchdog.txt
