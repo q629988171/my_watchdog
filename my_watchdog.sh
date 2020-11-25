@@ -1,6 +1,5 @@
 #!/bin/sh
 #sleep 100
-
 DATE=`date +%Y-%m-%d-%H:%M:%S`
 tries=0
 
@@ -10,7 +9,7 @@ do
     if /bin/ping -c 1 8.8.8.8 >/dev/null
     then
         echo $DATE Ping was successful.
-        state=$(cat my_watchdog.txt)
+        state=$(cat my_watchdog.txt) >/dev/null 2>&1
         if [ ! $state ]
         then
             echo $DATE Ping was successful. >>my_watchdog.log
@@ -27,7 +26,7 @@ do
 done
 
 echo $DATE Ping had five tries and failed each time.
-state=$(cat my_watchdog.txt)
+state=$(cat my_watchdog.txt) >/dev/null 2>&1
 if [ ! $state ]
 then
     echo $DATE Ping had five tries and failed each time. >>my_watchdog.log
