@@ -9,3 +9,5 @@ OpenWRT路由器中监控网络服务并重启的脚本
 
 然后用crontab -e来在系统的crontab中添加一句，每隔5分钟定时运行这个脚本：
 */5 * * * * sh /root/my_watchdog.sh
+
+注意: 首次运行需要初始化(删除 my_watchdog.txt)
